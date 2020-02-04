@@ -1,10 +1,10 @@
-const { Product } = require("../models");
+const {Product, Order} = require("../models");
 
 module.exports = function(app) {
 
     app.get("/api/products", function(req, res) {
         Product.findAll({
-            include: [Order]
+           include: [Order]
         }).then(products => res.json(products))
         
     });
