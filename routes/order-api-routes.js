@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function(app){
     app.get("/api/orders", function(req, res){
-        db.Order.findall({}).then(function(dbOrder){
+        db.Order.findAll({}).then(function(dbOrder){
             res.json(dbOrder);
         });
     });
