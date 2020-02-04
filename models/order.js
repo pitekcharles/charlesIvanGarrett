@@ -4,10 +4,6 @@ module.exports = function(sequelize, DataTypes){
             type:DataTypes.TEXT,
             allowNull: false
         },
-        customerid: {
-            type: DataTypes.TEXT,
-            allowNull:false
-        },
         quantity: {
             type: DataTypes.TEXT,
             allowNull:false
@@ -20,6 +16,11 @@ module.exports = function(sequelize, DataTypes){
 
     Order.associate = function(models) {
         Order.belongsToMany(models.Product, {through: "productOrder"})
+        Order.belongsTo(models.Customer, { 
+            foreignKey: {
+                allowNull: false
+            }
+        });
     }
 
     return Order;

@@ -27,9 +27,7 @@ module.exports = function (sequelize, DataTypes) {
     }, { freezeTableName: true });
 
     Customer.associate = function (models) {
-        Customer.hasMany(models.Order, {
-            foreignKey: 'email'
-        });
+        Customer.hasMany(models.Order);
     }
 
     return Customer;
