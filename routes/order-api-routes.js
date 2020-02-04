@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function(app){
     app.get("/api/orders", function(req, res){
-        db.Order.findall({include: db.product}).then(function(dbOrder){
+        db.Order.findall({}).then(function(dbOrder){
             res.json(dbOrder);
         });
     });
@@ -11,7 +11,8 @@ module.exports = function(app){
         db.Order.findOne({
             where: {
                 id: req.params.id
-            }
+            },
+                include: db.product
         }).then(function(dbOrder){
             res.json(dbOrder);
         });

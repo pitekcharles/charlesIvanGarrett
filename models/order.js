@@ -6,16 +6,12 @@ module.exports = function(sequelize, DataTypes){
         },
         customerid: {
             type: DataTypes.TEXT,
-            allowNull:false,
-            // references: {
-            //     model: "customer",
-            //     key: "id"
-            // }
+            allowNull:false
         },
         quantity: {
             type: DataTypes.TEXT,
             allowNull:false
-        },
+        }
         
     },
     {
