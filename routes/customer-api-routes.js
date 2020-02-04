@@ -3,6 +3,7 @@ const { Customer, Order } = require('../models');
 module.exports = function (app) {
 
     app.get('/api/customers', function (req, res) {
+        console.log('helllo')
         Customer.findAll({
             include: [Order]
         }).then(function (dbCustomer) {
