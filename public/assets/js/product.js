@@ -6,9 +6,9 @@ $(document).ready(function() {
   // Getting references to the name input and author container, as well as the table body
   const nameInput = $("#nameInput");
   const quantityInput = $("#quantityInput");
-  const costInput = $("costInput");
-  const descriptionInput = $("descriptionInput");
-  const categoryInput = $("categoryInput");
+  const costInput = $("#costInput");
+  const descriptionInput = $("#descriptionInput");
+  const categoryInput = $("#categoryInput");
   const productList = $("tbody");
   const productContainer = $("#product-container");
   // Adding event listeners to the form to create a new object, and the button to delete
