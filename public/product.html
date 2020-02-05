@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -54,10 +55,10 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    New Customer
+                    Product Management
                 </h1>
                 <h2 class="subtitle">
-                    Fill out the form to add a new Customer to the system.
+                    Add new product or view existing products and their inventories.
                 </h2>
             </div>
         </div>
@@ -71,46 +72,42 @@
                     <div class="card-content">
                         <div class="content">
                             <div class="control">
-                                
+
                             </div>
+                            <label class="label">Add Product</label>
                             <div class="field">
-                                <label class="label">Customer Name</label>
+                                <label class="label">Product Name</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter the Customers name.">
+                                    <input class="input" type="text" placeholder="Type product name here.">
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="label">Address</label>
+                                <label class="label">Quantity</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter the Customers Address.">
+                                    <input class="input" type="text" placeholder="Enter Quantity of new product.">
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="label">Payment</label>
+                                <label class="label">Price</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter the Customers prefered payment method">
+                                    <input class="input" type="text" placeholder="Enter the price of the new product.">
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="label">Phone Number</label>
+                                <label class="label">Description</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter Customers Phone Number">
+                                    <input class="input" type="text" placeholder="Enter description of new product.">
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="label">Email</label>
+                                <label class="label">Category</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter Customers email">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Password</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Create a Password for the new Customer">
+                                    <input class="input" type="text"
+                                        placeholder="Which category does this product fall under?">
                                 </div>
                             </div>
                             <br>
-                            <button class="button is-dark">Add Customer</button>
+                            <button class="button is-dark">Create Product</button>
 
                         </div>
                     </div>
@@ -119,13 +116,57 @@
             </div>
         </div>
     </div>
-    
+
+
+    <div class="container">
+        <div class="columns is-mobile">
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="control">
+                                <label class="label">View Products</label>
+                                <label class="label">Select Product</label>
+                                <div class="select">
+                                    <select>
+                                        <option>All Products</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <button class="button is-dark">View Product</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns is-mobile">
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <label class="label">Product Info</label>
+                            <ul>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 
 
 
 
+    <script type="text/javascript" src="js/chirp.js"></script>
 
 
 

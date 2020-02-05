@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -54,10 +55,10 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    New Product
+                    New order
                 </h1>
                 <h2 class="subtitle">
-                    Fill out the form to add a new product to the system.
+                    Fill out the form to create a new order and change your inventory.
                 </h2>
             </div>
         </div>
@@ -71,40 +72,32 @@
                     <div class="card-content">
                         <div class="content">
                             <div class="control">
-                                
-                            </div>
-                            <div class="field">
-                                <label class="label">Product Name</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Type product name here.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Quantity</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Enter Quantity of new product.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Price</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Enter the price of the new product.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Description</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Enter description of new product.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Category</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Which category does this product fall under?">
+                                <label class="label">Select Product</label>
+                                <div class="select">
+                                    <select>
+                                        <option>Select customer</option>
+                                        <option>this will need auto populate from database</option>
+                                    </select>
                                 </div>
                             </div>
                             <br>
-                            <button class="button is-dark">Create Product</button>
+                            <div class="control">
+                                <label class="label">Select Customer</label>
+                                <div class="select">
+                                    <select>
+                                        <option>Select Product</option>
+                                        <option>this will need auto populate from database</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="field">
+                                <label class="label">Quantity</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Must be a number.">
+                                </div>
+                            </div>
+                            <button class="button is-dark">Add to Order</button>
 
                         </div>
                     </div>
@@ -113,7 +106,24 @@
             </div>
         </div>
     </div>
-    
+    <div class="container">
+        <div class="columns is-mobile">
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <label class="label">Current Order</label>
+                            <ul>
+
+                            </ul>
+                            <button class="button is-dark">Submit Order</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 
