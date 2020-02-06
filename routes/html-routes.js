@@ -6,15 +6,6 @@ router.get("/", function(req, res) {
   res.render("index");
 });
 
-// router.get("/customer", function(req, res) {
-//   // res.sendFile(path.join(__dirname, "../public/customer.html"));
-//   res.render("customer");
-// });
-
-// router.get("/product", function(req, res) {
-//   // res.sendFile(path.join(__dirname, "../public/product.html"));
-//   res.render("product");
-// });
 
 router.get("/order", function(req, res) {
   // res.sendFile(path.join(__dirname, "../public/order.html"));

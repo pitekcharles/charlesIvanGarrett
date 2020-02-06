@@ -2,12 +2,15 @@ const { Customer, Order } = require('../models');
 
 module.exports = function (app) {
 
-    app.get('/api/customers', function (req, res) {
-        console.log('helllo')
+    app.get('/customer', function (req, res) {
+        
         Customer.findAll({
             include: [Order]
         }).then(function (dbCustomer) {
-            res.json(dbCustomer)
+            console.log('customer-api-routes')
+            dbCustomer = dbCustomer.map(customer => customer.toJSON());
+            res.render('customer', { dbCustomer })
+            // res.json(dbCustomer)
         });
     });
 
