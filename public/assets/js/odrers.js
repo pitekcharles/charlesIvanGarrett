@@ -8,9 +8,7 @@ $(document).ready(function() {
   const orderCategorySelected = $("#category");
 
   // click events
-  $(document).on("click", "button.delete", handleOrderDelete);
-  $(document).on("click", "button.edit", handleOrderEdit);
-  // Variable to hold our posts
+
   let orders;
 
   function getOrders(customer) {
