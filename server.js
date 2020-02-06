@@ -4,8 +4,10 @@
 // ******************************************************************************
 // *** Dependencies
 // =============================================================
-var express = require("express");
-var htmlRoutes = require('./routes/html-routes')
+const express = require("express");
+const exphbs = require("express-handlebars");
+const htmlRoutes = require("./routes/html-routes");
+
 // Sets up the Express App
 // =============================================================
 const app = express();
@@ -23,16 +25,16 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/html-routes.js")(app);
+// require("./routes/html-routes.js")(app);
 require("./routes/product-api-routes.js")(app);
 require("./routes/order-api-routes.js")(app);
 require("./routes/customer-api-routes.js")(app);
-app.use(htmlRoutes);
 
+app.use(htmlRoutes);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log(`App listening on PORT ${PORT}`);
   });
