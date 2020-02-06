@@ -13,7 +13,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT(12),
             allowNull: false
         },
         email: {
