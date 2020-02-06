@@ -4,8 +4,10 @@
 // ******************************************************************************
 // *** Dependencies
 // =============================================================
-var express = require("express");
-var htmlRoutes = require('./routes/html-routes')
+const express = require("express");
+const exphbs = require("express-handlebars");
+const htmlRoutes = require("./routes/html-routes");
+
 // Sets up the Express App
 // =============================================================
 const app = express();
@@ -23,10 +25,11 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/html-routes.js")(app);
+// require("./routes/html-routes.js")(app);
 require("./routes/product-api-routes.js")(app);
 require("./routes/order-api-routes.js")(app);
 require("./routes/customer-api-routes.js")(app);
+
 app.use(htmlRoutes);
 
 // Syncing our sequelize models and then starting our Express app
