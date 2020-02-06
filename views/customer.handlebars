@@ -1,57 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inventory Management System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
-
-<body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item">
-                <p>Inventory Management System</p>
-            </a>
-
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-                data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="/">
-                    Home
-                </a>
-
-            </div>
-        </div>
-        </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-dark">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                        Log in
-                    </a>
-                </div>
-            </div>
-        </div>
-        </div>
-    </nav>
-
-    <section class="hero is-dark is-bold">
+<section class="hero is-dark is-bold">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
@@ -138,7 +85,9 @@
                                 <div class="select">
                                     <select id="customerList">
                                         <option data-id="all">All Customers</option>
-                                        <option data-id="all">test</option>
+                                        {{#each customers}}
+                                            <option id="{{id}}">{{name}}</option>
+                                        {{/each}}
                                     </select>
                                 </div>
                             </div>
@@ -159,7 +108,15 @@
                         <div class="content">
                             <label class="label">Customer Info</label>
                             <ul id="customerInfo">
-
+                                {{#each customerInfo}}
+                                    <li>
+                                        <label class="label">{{name}}</label>
+                                        <p>Address: {{address}}</p>
+                                        <p>Payment: {{payment}}</p>
+                                        <p>Phone Number: {{phone}}</p>
+                                        <p>Email: {{email}}</p>
+                                    </li>
+                                {{/each}}
                             </ul>
 
                         </div>
@@ -176,11 +133,3 @@
 
 
 
-
-
-
-
-
-</body>
-
-</html>
