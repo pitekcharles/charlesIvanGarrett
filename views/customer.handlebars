@@ -85,7 +85,7 @@
                                 <div class="select">
                                     <select id="customerList">
                                         <option data-id="all">All Customers</option>
-                                        {{#each customers}}
+                                        {{#each dbCustomer}}
                                             <option id="{{id}}">{{name}}</option>
                                         {{/each}}
                                     </select>
@@ -108,7 +108,7 @@
                         <div class="content">
                             <label class="label">Customer Info</label>
                             <ul id="customerInfo">
-                                {{#each customerInfo}}
+                                {{#each dbCustomer}}
                                     <li>
                                         <label class="label">{{name}}</label>
                                         <p>Address: {{address}}</p>
