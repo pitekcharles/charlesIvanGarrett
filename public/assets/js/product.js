@@ -12,7 +12,7 @@ $(document).ready(function() {
   const productList = $("tbody");
   const productContainer = $("#product-container");
   // Adding event listeners to the form to create a new object, and the button to delete
-  $(document).on("submit", "#product-form", handleProductSubmit);
+  $("#product-form").on("click", handleProductSubmit);
   // Getting the initial list
   getProducts();
   // A function to handle what happens when the form is submitted to create a new Product
@@ -31,6 +31,7 @@ $(document).ready(function() {
   }
   // Function for creating a new list row for Products
   function createProduct(productData) {
+    console.log(nameInput.val().trim());
     $.post("/api/products", productData).then(getProducts);
   }
 
@@ -42,7 +43,7 @@ $(document).ready(function() {
   function getProducts() {
     $.get("/api/products", function(data) {
       const rowsToAdd = [];
-      for (const i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         rowsToAdd.push(createProductRow(data[i]));
       }
       renderProductList(rowsToAdd);
