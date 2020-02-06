@@ -9,10 +9,11 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/product/:product", function(req, res) {
+  app.get("/product/:id", function(req, res) {
+    // console.log(req.params.product);
     Product.findOne({
       where: {
-        name: req.params.product,
+        id: req.params.id,
       },
     }).then(product => res.json(product));
   });
