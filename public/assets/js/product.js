@@ -15,7 +15,7 @@ $(document).ready(function() {
   $("#product-form").on("click", handleProductSubmit);
   // Getting the initial list
 
-  // getProducts();
+  getProducts();
 
   // A function to handle what happens when the form is submitted to create a new Product
   function handleProductSubmit(e) {
@@ -38,7 +38,7 @@ $(document).ready(function() {
   }
 
   // function getProducts() {
-  //   $.get("/api/products", function(data) {
+  //   $.get("/api/products/:product", function(data) {
   //     console.log(data);
   //     // console.log(err);
   //     // res.render("product", req); //!
