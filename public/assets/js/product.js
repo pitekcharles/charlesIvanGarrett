@@ -64,8 +64,8 @@ $(document).ready(function() {
     //   .remove();
     productContainer.children(".alert").remove();
     if (rows.length) {
-      console.log(rows);
-      productList.prepend(rows[0]);
+      console.log({ rows });
+      productList.append(`<li>${rows[0].name}</li>`); // '<li><a href="#">New list item</a></li>'
     } else {
       renderEmpty();
     }
