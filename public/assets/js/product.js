@@ -9,7 +9,7 @@ $(document).ready(function() {
   const costInput = $("#costInput");
   const descriptionInput = $("#descriptionInput");
   const categoryInput = $("#categoryInput");
-  const productList = $("tbody");
+  const productList = $("#productList");
   const productContainer = $("#product-container");
   // Adding event listeners to the form to create a new object, and the button to delete
   $("#product-form").on("click", handleProductSubmit);
@@ -31,19 +31,21 @@ $(document).ready(function() {
   }
   // Function for creating a new list row for Products
   function createProduct(productData) {
+    console.log(nameInput.val().trim());
     $.post("/api/products", productData).then(getProducts);
   }
 
-  function createProductRow(productData) {
-    const newTr = $("<tr>");
-    newTr.data("product", productData);
-  }
+  // function createProductRow(productData) {
+  //   const newTr = $("<tr>");
+  //   newTr.data("product", productData);
+  // }
   // Function for retrieving Products and getting them ready to be rendered to the page
   function getProducts() {
     $.get("/api/products", function(data) {
       const rowsToAdd = [];
-      for (const i = 0; i < data.length; i++) {
-        rowsToAdd.push(createProductRow(data[i]));
+
+      for (let i = 0; i < data.length; i++) {
+        rowsToAdd.push(data[i]); // createProductRow
       }
       renderProductList(rowsToAdd);
       // eslint-disable-next-line no-unused-expressions
@@ -56,14 +58,14 @@ $(document).ready(function() {
   }
   // A function for rendering the list of Products to the page
   function renderProductList(rows) {
-    productList
-      .children()
-      .not(":last")
-      .remove();
+    // productList
+    //   .children()
+    //   .not(":last")
+    //   .remove();
     productContainer.children(".alert").remove();
     if (rows.length) {
       console.log(rows);
-      productList.prepend(rows);
+      productList.prepend(rows[0]);
     } else {
       renderEmpty();
     }
