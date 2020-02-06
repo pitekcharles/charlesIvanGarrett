@@ -15,7 +15,7 @@ $(document).ready(function() {
   $("#product-form").on("click", handleProductSubmit);
   // Getting the initial list
 
-  getProducts();
+  // getProducts();
 
   // A function to handle what happens when the form is submitted to create a new Product
   function handleProductSubmit(e) {
