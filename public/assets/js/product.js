@@ -54,6 +54,53 @@ $(document).ready(function() {
       location.reload();
     }
   }
-  const myForm = $("#orderForm");
-  myForm.validate();
+
+  const constraints = {
+    quantity: {
+      name: "quantity",
+      rules: "numeric",
+    },
+  };
+  $(document).on("submit", "#orderForm", function(e) {
+    e.preventDefault();
+    handleFormSubmit($(this));
+  });
+
+  function handleFormSubmit(form) {
+    console.log("wwwof");
+
+    const values = validate.collectFormValues(form);
+    const errors = validate(values, constraints);
+    // showErrors(form, errors || {});
+    if (!errors) {
+      console.log("success");
+    } else {
+      console.log(errors);
+    }
+  }
+
+  // function showErrors(form, errors) {}
+
+  // const validator = new FormValidator(
+  //   "orderForm",
+  //   [
+  //     {
+  //       name: "quantity",
+  //       rules: "numeric",
+  //     },
+  //   ],
+  //   function(errors, event) {
+  //     if (errors.length > 0) {
+  //       // console.log(errors);
+
+  //       let errorString = "";
+
+  //       for (let i = 0, errorLength = errors.length; i < errorLength; i++) {
+  //         errorString += `${errors[i].message}<br />`;
+  //       }
+
+  //       $("#errorQuantity").text(errorString);
+  //     }
+  //   }
+  // );
 });

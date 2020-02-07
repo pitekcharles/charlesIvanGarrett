@@ -27,39 +27,43 @@
                                 <label class="label">Product Name</label>
                                 <div class="control">
                                     <input class="input" id="nameInput" type="text"
-                                        placeholder="Type product name here.">
+                                        placeholder="Type product name here." name="product_name" />
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="label">Quantity</label>
                                 <div class="control">
+                                    <div id="errorQuantity"></div>
                                     <input class="input" id="quantityInput" type="text"
-                                        placeholder="Enter Quantity of new product.">
+                                        placeholder="Enter Quantity of new product." name="quantity" />
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="label">Price</label>
                                 <div class="control">
                                     <input class="input" id="costInput" type="text"
-                                        placeholder="Enter the price of the new product.">
+                                        placeholder="Enter the price of the new product." data-required="true"
+                                        data-tovalidate="numeric" />
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="label">Description</label>
                                 <div class="control">
                                     <input class="input" id="descriptionInput" type="text"
-                                        placeholder="Enter description of new product.">
+                                        placeholder="Enter description of new product." data-required="true"
+                                        data-tovalidate="alpha_numeric" />
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="label">Category</label>
                                 <div class="control">
                                     <input class="input" type="text" id="categoryInput"
-                                        placeholder="Which category does this product fall under?">
+                                        placeholder="Which category does this product fall under?" data-required="true"
+                                        data-tovalidate="alpha_numeric" />
                                 </div>
                             </div>
                             <br>
-                            <button class="button is-dark" id="product-form">Create Product</button>
+                            <button type="submit" class="button is-dark" id="product-form">Create Product</button>
                         </form>
                     </div>
                 </div>
@@ -128,5 +132,5 @@
 
 
 
-
+<script type="text/javascript" src="/assets/js/external/validate.min.js"></script>
 <script type="text/javascript" src="/assets/js/product.js"></script>
