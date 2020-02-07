@@ -1,14 +1,19 @@
+/* eslint-disable object-shorthand */
 const { Product, Order } = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/products", function(req, res) {
-    Product.findAll({}).then(products => res.json(products));
+  app.get("/product", function(req, res) {
+    Product.findAll({}).then(products => {
+      products = products.map(product => product.toJSON());
+      res.render("product", { products });
+    });
   });
 
-  app.get("/api/product/:product", function(req, res) {
+  app.get("/product/:id", function(req, res) {
+    // console.log(req.params.product);
     Product.findOne({
       where: {
-        name: req.params.product,
+        id: req.params.id,
       },
     }).then(product => res.json(product));
   });

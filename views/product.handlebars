@@ -1,128 +1,130 @@
 <section class="hero is-dark is-bold">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Product Management
-                </h1>
-                <h2 class="subtitle">
-                    Add new product or view existing products and their inventories.
-                </h2>
-            </div>
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Product Management
+            </h1>
+            <h2 class="subtitle">
+                Add new product or view existing products and their inventories.
+            </h2>
         </div>
-    </section>
-    <br>
-    <br>
-    <div class="container">
-        <div class="columns is-mobile">
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
+    </div>
+</section>
+<br>
+<br>
+<div class="container">
+    <div class="columns is-mobile">
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <div class="control">
+
+                        </div>
+                        <label class="label">Add Product</label>
+                        <div class="field">
+                            <label class="label">Product Name</label>
                             <div class="control">
-
+                                <input class="input" id="nameInput" type="text" placeholder="Type product name here.">
                             </div>
-                            <label class="label">Add Product</label>
-                            <div class="field">
-                                <label class="label">Product Name</label>
-                                <div class="control">
-                                    <input class="input" id="nameInput" type="text" placeholder="Type product name here.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Quantity</label>
-                                <div class="control">
-                                    <input class="input" id="quantityInput" type="text" placeholder="Enter Quantity of new product.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Price</label>
-                                <div class="control">
-                                    <input class="input" id="costInput" type="text" placeholder="Enter the price of the new product.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Description</label>
-                                <div class="control">
-                                    <input class="input" id="descriptionInput" type="text" placeholder="Enter description of new product.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Category</label>
-                                <div class="control">
-                                    <input class="input" type="text" id="categoryInput"
-                                        placeholder="Which category does this product fall under?">
-                                </div>
-                            </div>
-                            <br>
-                            <button class="button is-dark" id="product-form">Create Product</button>
-
                         </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="columns is-mobile">
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
+                        <div class="field">
+                            <label class="label">Quantity</label>
                             <div class="control">
-                                <label class="label">View Products</label>
-                                <label class="label">Select Product</label>
-                                <div class="select">
-                                    <select>
-                                        <option>All Products</option>
-                                        {{#each product}}
-                                            <option id="{{id}}">{{name}}</option>
-                                        {{/each}}
-                                    </select>
-                                </div>
+                                <input class="input" id="quantityInput" type="text"
+                                    placeholder="Enter Quantity of new product.">
                             </div>
-                            <br>
-                            <button class="button is-dark">View Product</button>
                         </div>
+                        <div class="field">
+                            <label class="label">Price</label>
+                            <div class="control">
+                                <input class="input" id="costInput" type="text"
+                                    placeholder="Enter the price of the new product.">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Description</label>
+                            <div class="control">
+                                <input class="input" id="descriptionInput" type="text"
+                                    placeholder="Enter description of new product.">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Category</label>
+                            <div class="control">
+                                <input class="input" type="text" id="categoryInput"
+                                    placeholder="Which category does this product fall under?">
+                            </div>
+                        </div>
+                        <br>
+                        <button class="button is-dark" id="product-form">Create Product</button>
+
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
-    <div class="container">
-        <div class="columns is-mobile">
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
-                            <label class="label">Product Info</label>
-                            <ul>
-                                {{#each productinfo}}
-                                    <li>
-                                        <label class="label">{{name}}</label>
-                                        <p>Quantity: {{quantity}}</p>
-                                        <p>Cost: {{cost}}</p>
-                                        <p>Description: {{description}}</p>
-                                        <p>Category: {{category}}</p>
-                                    </li>
-                                {{/each}}
-                            </ul>
+</div>
 
+
+<div class="container">
+    <div class="columns is-mobile">
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <div class="control">
+                            <label class="label">View Products</label>
+                            <label class="label">Select Product</label>
+                            <div class="select">
+                                <select id="select">
+                                    <option>All Products</option>
+                                    {{#each products}}
+                                    <option id="{{id}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
                         </div>
+                        <br>
+                        {{!-- <button id="viewProduct" class="button is-dark">View Product</button> --}}
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
+<div class="container">
+    <div class="columns is-mobile">
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div id="productDiv" class="content">
+                        <label class="label">Product Info</label>
+                        <ul id="productList">
+                            {{#each products}}
+                            <li>
+                                <label class="label">{{name}}</label>
+                                <p>Quantity: {{quantity}}</p>
+                                <p>Cost: {{cost}}</p>
+                                <p>Description: {{description}}</p>
+                                <p>Category: {{category}}</p>
+                            </li>
+                            {{/each}}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 
 
 
 
-    <script type="text/javascript" src="./public/assets/js/product.js"></script>
-
+<script type="text/javascript" src="/assets/js/product.js"></script>
