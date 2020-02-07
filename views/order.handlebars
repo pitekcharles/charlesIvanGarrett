@@ -21,12 +21,12 @@
                             <div class="control">
                                 <label class="label">Select Product</label>
                                 <div class="select">
-                                    <select>
-                                        <option>Select Product</option>
-                                        {{#each product}}
-                                            <option id="{{id}}">{{name}}</option>
-                                        {{/each}}
-                                    </select>
+                                    <select id="select">
+                                    <option>All Products</option>
+                                    {{#each products}}
+                                    <option id="{{id}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
                                 </div>
                             </div>
                             <br>
@@ -67,5 +67,5 @@
     </div>
 
     
-
-    <script type="text/javascript" src="./public/assets/js/order.js"></script>
+{{!-- <script type="text/javascript" src="/assets/js/product.js"></script> --}}
+    <script type="text/javascript" src="/assets/js/odrers.js"></script>

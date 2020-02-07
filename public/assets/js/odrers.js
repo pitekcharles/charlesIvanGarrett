@@ -1,49 +1,38 @@
 $(document).ready(function() {
-<<<<<<< HEAD
   const productPop = $("#productPop");
   const quantity = $("#quantity");
-   
-  function getProducts() {
-    $.get("/api/products", function(data){
-      for (var i = 0; i < data.length; i++) {
-        popProducts(data[i].name, data[i].id);
-      };
-=======
-  const orderContainer = $("#orderContainer");
-  const orderCategorySelected = $("#category");
+  const submit = $("#submitOrder");
 
-  // click events
-
-  let orders;
-
-  function getOrders(customer) {
-    customerId = customer || "";
-    if (customerId) {
-      customerId = `/?customer_id=${customerId}`;
-    }
-    $.get(`/api/posts${customerId}`, function(data) {
-      console.log("Orders ", data);
-      orders = data;
-      if (!orders || !orders.length) {
-        displayEmpty(customer);
-      } else {
-        initializeRows();
-      }
->>>>>>> 1ce8b0a59863ddb360e301b9a514b34bb34ffa8a
-    });
-  };
-
+  submit.on("click", submitClick)
+  
+  getProducts();
+  // $("#submitOrder").on("click", submitClick());
+  
+  
   function popProducts(name, id) {
     let option = $("<option>").attr({
       id: id,
-      text: name,
     });
-    $("#productPop").append(option);
+    option.text(name);
+    $("#select").append(option);
+  };
+  
+  function getProducts() {
+    console.log("maybe?")
+    $.get("/products", function(data){
+      console.log(data[0].name)
+      for (var i = 0; i < data.length; i++) {
+        popProducts(data[i].name, data[i].id);
+      };
+    });
   };
 
+
   function submitClick() {
+    console.log("the click event launches first thing still");
     const selectedId = $('option:selected').attr('id');
-    $.get(`/api/products/id/${selectedId}`, function(data) {
+    $.get(`/product/${selectedId}`, function(data) {
+      console.log(selectedId);
       const currentQuantity = data.quantity;
       const inventoryChange = $("#quantity").val();
       let newQuantity = currentQuantity - inventoryChange;
@@ -56,14 +45,11 @@ $(document).ready(function() {
           url: `/api/products/update/${selectedId}/${newQuantity}`
         }).then(function(){
           let info = $("<li>").text("The inventory has been updated!");
-          $("#productList").empty.append
+          $("#productList").empty().append(info)
         })
-      })
       }
-    })
-  };
-
-  getProducts();
-
-  $("#submitOrder").on("click", submitClick());
-};
+      })
+    }
+    
+    // $('#submitOrder').delegate('#submitOrder', 'click', submitClick());
+})

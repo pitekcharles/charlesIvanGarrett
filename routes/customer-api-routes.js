@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-const { Customer, Order } = require("../models");
-
-module.exports = function(app) {
-  app.get("/api/customers", function(req, res) {
-    Customer.findAll({
-      include: [Order],
-    }).then(function(dbCustomer) {
-      res.json(dbCustomer);
-    });
-  });
-  app.get("/api/customers/:id", function(req, res) {
-    Customer.findOne({
-      where: {
-        id: req.params.id,
-      },
-      include: [Order],
-    }).then(function(dbCustomer) {
-      res.json(dbCustomer);
-=======
 const { Customer, Order } = require('../models');
 
 module.exports = function (app) {
@@ -44,9 +24,8 @@ module.exports = function (app) {
         }).then(function (dbCustomer) {
             res.json(dbCustomer)
         });
->>>>>>> 1ce8b0a59863ddb360e301b9a514b34bb34ffa8a
     });
-  });
+ 
   app.post("/api/customers", function(req, res) {
     Customer.create(req.body).then(function(dbCustomer) {
       res.json(dbCustomer);
@@ -61,4 +40,4 @@ module.exports = function (app) {
       res.json(dbCustomer);
     });
   });
-};
+ };

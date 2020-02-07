@@ -13,7 +13,7 @@ $(document).ready(function() {
   $("#product-form").on("click", handleProductSubmit);
   $("#select").change(getProducts);
   // Getting the initial list
-
+  
   // A function to handle what happens when the form is submitted to create a new Product
   function handleProductSubmit(e) {
     e.preventDefault();
