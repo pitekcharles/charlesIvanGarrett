@@ -54,4 +54,6 @@ $(document).ready(function() {
       location.reload();
     }
   }
+  const myForm = $("#orderForm");
+  myForm.validate();
 });
