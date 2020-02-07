@@ -6,20 +6,17 @@ module.exports = function(app) {
     Product.findAll({}).then(products => {
       products = products.map(product => product.toJSON());
       res.render("product", { products });
-      // res.json(products);
     });
   });
 
   app.get("/products", function(req, res) {
     Product.findAll({}).then(products => {
       products = products.map(product => product.toJSON());
-      // res.render("product", { products });
       res.json(products);
     });
   });
 
   app.get("/product/:id", function(req, res) {
-    // console.log(req.params.product);
     Product.findOne({
       where: {
         id: req.params.id,

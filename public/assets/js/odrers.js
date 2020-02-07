@@ -1,12 +1,9 @@
 $(document).ready(function() {
-  const productPop = $("#productPop");
-  const quantity = $("#quantity");
   const submit = $("#submitOrder");
 
   submit.on("click", submitClick)
   
   getProducts();
-  // $("#submitOrder").on("click", submitClick());
   
   
   function popProducts(name, id) {
@@ -18,9 +15,7 @@ $(document).ready(function() {
   };
   
   function getProducts() {
-    console.log("maybe?")
     $.get("/products", function(data){
-      console.log(data[0].name)
       for (var i = 0; i < data.length; i++) {
         popProducts(data[i].name, data[i].id);
       };
@@ -29,10 +24,8 @@ $(document).ready(function() {
 
 
   function submitClick() {
-    console.log("the click event launches first thing still");
     const selectedId = $('option:selected').attr('id');
     $.get(`/product/${selectedId}`, function(data) {
-      console.log(selectedId);
       const currentQuantity = data.quantity;
       const inventoryChange = $("#quantity").val();
       let newQuantity = currentQuantity - inventoryChange;
@@ -50,6 +43,4 @@ $(document).ready(function() {
       }
       })
     }
-    
-    // $('#submitOrder').delegate('#submitOrder', 'click', submitClick());
 })
