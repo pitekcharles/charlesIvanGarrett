@@ -1,4 +1,5 @@
 $(document).ready(function() {
+<<<<<<< HEAD
   const productPop = $("#productPop");
   const quantity = $("#quantity");
    
@@ -7,6 +8,28 @@ $(document).ready(function() {
       for (var i = 0; i < data.length; i++) {
         popProducts(data[i].name, data[i].id);
       };
+=======
+  const orderContainer = $("#orderContainer");
+  const orderCategorySelected = $("#category");
+
+  // click events
+
+  let orders;
+
+  function getOrders(customer) {
+    customerId = customer || "";
+    if (customerId) {
+      customerId = `/?customer_id=${customerId}`;
+    }
+    $.get(`/api/posts${customerId}`, function(data) {
+      console.log("Orders ", data);
+      orders = data;
+      if (!orders || !orders.length) {
+        displayEmpty(customer);
+      } else {
+        initializeRows();
+      }
+>>>>>>> 1ce8b0a59863ddb360e301b9a514b34bb34ffa8a
     });
   };
 

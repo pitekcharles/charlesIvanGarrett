@@ -1,135 +1,143 @@
 <section class="hero is-dark is-bold">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Customer Management
-                </h1>
-                <h2 class="subtitle">
-                    Add customer, or view customers from this page.
-                </h2>
-            </div>
-        </div>
-    </section>
-    <br>
-    <br>
-    <div class="container">
-        <div class="columns is-mobile">
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
-                            <div class="control">
-                                <label class="label">Add Customer</label>
-                            </div>
-                            <div class="field">
-                                <label class="label">Customer Name</label>
-                                <div class="control">
-                                    <input class="input" id="customerName" type="text" placeholder="Enter the Customers name.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Address</label>
-                                <div class="control">
-                                    <input class="input" id="address" type="text"
-                                        placeholder="Enter the Customers Address.">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Payment</label>
-                                <div class="control">
-                                    <input class="input" id="payment" type="text"
-                                        placeholder="Enter the Customers prefered payment method">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Phone Number</label>
-                                <div class="control">
-                                    <input class="input" id="phoneNumber" type="text"
-                                        placeholder="Enter Customers Phone Number">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Email</label>
-                                <div class="control">
-                                    <input class="input" id="email" type="text" placeholder="Enter Customers email">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label class="label">Password</label>
-                                <div class="control">
-                                    <input class="input" id="password" type="text"
-                                        placeholder="Create a Password for the new Customer">
-                                </div>
-                            </div>
-                            <br>
-                            <button class="button is-dark" id="addCustomerBtn">Add Customer</button>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Customer Management
+            </h1>
+            <h2 class="subtitle">
+                Add customer, or view customers from this page.
+            </h2>
         </div>
     </div>
-
-
-    <div class="container">
-        <div class="columns is-mobile">
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
-                            <div class="control">
-                                <label class="label">View Customer</label>
-                                <label class="label">Select Customer</label>
-                                <div class="select">
-                                    <select id="customerList">
-                                        <option data-id="all">All Customers</option>
-                                        {{#each customers}}
-                                            <option id="{{id}}">{{name}}</option>
-                                        {{/each}}
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
-                            <button class="button is-dark" id="viewSubmit">View Customer</button>
+</section>
+<br>
+<br>
+<div class="container">
+    <div class="columns is-mobile">
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <div class="control">
+                            <label class="label">Add Customer</label>
                         </div>
+                        <div class="field">
+                            <label class="label">Customer Name</label>
+                            <div class="control">
+                                <input class="input" id="customerName" type="text"
+                                    placeholder="Enter the Customers name.">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Address</label>
+                            <div class="control">
+                                <input class="input" id="address" type="text"
+                                    placeholder="Enter the Customers Address.">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Payment</label>
+                            <div class="control">
+                                <input class="input" id="payment" type="text"
+                                    placeholder="Enter the Customers prefered payment method">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Phone Number</label>
+                            <div class="control">
+                                <input class="input" id="phoneNumber" type="text"
+                                    placeholder="Enter Customers Phone Number">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control">
+                                <input class="input" id="email" type="text" placeholder="Enter Customers email">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control">
+                                <input class="input" id="password" type="text"
+                                    placeholder="Create a Password for the new Customer">
+                            </div>
+                        </div>
+                        <br>
+                        <button class="button is-dark" id="addCustomerBtn">Add Customer</button>
+
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
-    <div class="container">
-        <div class="columns is-mobile">
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
-                            <label class="label">Customer Info</label>
-                            <ul id="customerInfo">
-                                {{#each customerInfo}}
-                                    <li>
-                                        <label class="label">{{name}}</label>
-                                        <p>Address: {{address}}</p>
-                                        <p>Payment: {{payment}}</p>
-                                        <p>Phone Number: {{phone}}</p>
-                                        <p>Email: {{email}}</p>
-                                    </li>
-                                {{/each}}
+</div>
+
+
+<div class="container">
+    <div class="columns is-mobile">
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <div class="control">
+                            <label class="label">View Customer</label>
+                            <label class="label">Select Customer</label>
+                            <div class="select">
+                                <select id="customerList">
+                                    <option data-id="all">All Customers</option>
+                                    {{#each dbCustomer}}
+                                    <option id="{{id}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        {{!-- <button class="button is-dark" id="viewSubmit">View Customer</button> --}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="columns is-mobile">
+        <div class="column">
+            <div class="card">
+                <div class="card-content">
+                    <div id="productDiv" class="content">
+                        <label class="label">Customer Info</label>
+                        <ul id="customerInfo">
+                            {{#each dbCustomer}}
+                            <ul>
+                                <div class="tile is-parent">
+                                    <article class="tile is-child notification is-dark">
+                                        <p class="title name">name: {{name}}</p>
+                                        <p class="subtitle address">address: {{address}}</p>
+                                        <p class="subtitle payment">payment: {{payment}}</p>
+                                        <p class="subtitle phone">phone: {{phone}}</p>
+                                        <p class="subtitle email">email: {{email}}</p>
+                                        <p class="subtitle password">password: {{password}}</p>
+
+                                    </article>
                             </ul>
+                            {{/each}}
+                        </ul>
 
-                        </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
 
 
-    <script type="text/javascript" src="/assets/js/newCustomer.js"></script>
+<script type="text/javascript" src="/assets/js/newCustomer.js"></script>
 
 
 
 
+
+</div>
