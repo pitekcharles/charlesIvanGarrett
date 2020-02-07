@@ -1,7 +1,7 @@
 const db = require("../models");
 
 module.exports = function(app) {
-  app.get("/order", function(req, res) {
+  app.get("/api/orders", function(req, res) {
     db.Order.findAll({
       include: [db.Product],
     }).then(function(dbOrder) {
