@@ -15,7 +15,7 @@ module.exports = function (app) {
     });
 
 
-    app.get('/api/customers/:id', function (req, res) {
+    app.get('/customers/:id', function (req, res) {
         Customer.findOne({
             where: {
                 id: req.params.id
