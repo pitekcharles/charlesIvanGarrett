@@ -13,6 +13,14 @@ module.exports = function(app) {
     }).then(product => res.json(product));
   });
 
+  app.get("/api/product/id/:id", function(req, res) {
+    Product.findOne({
+      where: {
+        id: req.params.id,
+      },
+    }).then(product => res.json(product));
+  });
+
   app.post("/api/products", function(req, res) {
     console.log(req.body);
 
@@ -25,5 +33,12 @@ module.exports = function(app) {
         id: req.params.id,
       },
     }).then(product => res.json(product));
+  });
+
+  app.post("/api/products/update/:id/:quantity", function(req, res) {
+    Product.update({quantity: req.params.quantity},{where: {id: req.params.id,}})
+      .then(function() {
+        console.log(`Product with ID: ${req.params.id} has had its quantity updated to ${req.params.quantity}`)
+      })
   });
 };

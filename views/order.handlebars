@@ -33,7 +33,7 @@
                             <div class="field">
                                 <label class="label">Quantity</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Must be a number.">
+                                    <input id="quantity" class="input" type="text" placeholder="Must be a number.">
                                 </div>
                             </div>
                             <button class="button is-dark" id="submitOrder">Submit Order</button>
@@ -45,6 +45,27 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="columns is-mobile">
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content" id="product-container">
+                            <label class="label" id="info">Info</label>
+                            
+                            <ul id="productList">
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     
 
     <script type="text/javascript" src="./public/assets/js/order.js"></script>

@@ -1,78 +1,46 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-/* eslint-disable func-names */
-
 $(document).ready(function() {
-  const orderContainer = $("#orderContainer");
-  const orderCategorySelected = $("#category");
+  const productPop = $("#productPop");
+  const quantity = $("#quantity");
+   
+  function getProducts() {
+    $.get("/api/products", function(data){
+      for (var i = 0; i < data.length; i++) {
+        popProducts(data[i].name, data[i].id);
+      };
+    });
+  };
 
-  // click events
-  $(document).on("click", "button.delete", handleOrderDelete);
-  $(document).on("click", "button.edit", handleOrderEdit);
-  // Variable to hold our posts
-  let orders;
+  function popProducts(name, id) {
+    let option = $("<option>").attr({
+      id: id,
+      text: name,
+    });
+    $("#productPop").append(option);
+  };
 
-  function getOrders(customer) {
-    customerId = customer || "";
-    if (customerId) {
-      customerId = `/?customer_id=${customerId}`;
-    }
-    $.get(`/api/posts${customerId}`, function(data) {
-      console.log("Orders ", data);
-      orders = data;
-      if (!orders || !orders.length) {
-        displayEmpty(customer);
+  function submitClick() {
+    const selectedId = $('option:selected').attr('id');
+    $.get(`/api/products/id/${selectedId}`, function(data) {
+      const currentQuantity = data.quantity;
+      const inventoryChange = $("#quantity").val();
+      let newQuantity = currentQuantity - inventoryChange;
+      if (newQuantity < 0) {
+        let info = $("<li>").text("There is not enough inventory for an order of that size.");
+        $("#productList").append(info);
       } else {
-        initializeRows();
+        $.ajax({
+          method:"PUT",
+          url: `/api/products/update/${selectedId}/${newQuantity}`
+        }).then(function(){
+          let info = $("<li>").text("The inventory has been updated!");
+          $("#productList").empty.append
+        })
+      })
       }
-    });
-  }
+    })
+  };
 
-  function initializeRows() {
-    blogContainer.empty();
-    const ordersToAdd = [];
-    for (const i = 0; i < orders.length; i++) {
-      ordersToAdd.push(createNewRow(posts[i]));
-    }
-    blogContainer.append(ordersToAdd);
-  }
+  getProducts();
 
-  function deleteOrder(id) {
-    $.ajax({
-      method: "DELETE",
-      url: `/api/posts/${id}`,
-    }).then(function() {
-      getOrders(orderCategorySelected.val());
-    });
-  }
-
-  function handleOrderDelete() {
-    const currentOrder = $(this)
-      .parent()
-      .data("order");
-    deleteOrder(currentOrder.id);
-  }
-
-  function handleOrderEdit() {
-    const currentOrder = $(this)
-      .parent()
-      .data("post");
-    window.location.href = `/cms?order_id=${currentOrder.id}`;
-  }
-
-  function displayEmpty(id) {
-    const query = window.location.search;
-    let partial = "";
-    if (id) {
-      partial = ` for Customer #${id}`;
-    }
-    blogContainer.empty();
-    const messageH2 = $("<h2>");
-    messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html(
-      `No posts yet${partial}, navigate <a href='/cms${query}'>here</a> in order to get started.`
-    );
-    blogContainer.append(messageH2);
-  }
-});
+  $("#submitOrder").on("click", submitClick());
+};
