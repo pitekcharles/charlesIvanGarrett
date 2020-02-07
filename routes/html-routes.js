@@ -6,7 +6,6 @@ router.get("/", function(req, res) {
   res.render("index");
 });
 
-
 router.get("/order", function(req, res) {
   // res.sendFile(path.join(__dirname, "../public/order.html"));
   res.render("order");

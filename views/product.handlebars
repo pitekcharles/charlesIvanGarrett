@@ -78,16 +78,16 @@
                             <label class="label">View Products</label>
                             <label class="label">Select Product</label>
                             <div class="select">
-                                <select>
+                                <select id="select">
                                     <option>All Products</option>
-                                    {{#each product}}
+                                    {{#each products}}
                                     <option id="{{id}}">{{name}}</option>
                                     {{/each}}
                                 </select>
                             </div>
                         </div>
                         <br>
-                        <button class="button is-dark">View Product</button>
+                        {{!-- <button id="viewProduct" class="button is-dark">View Product</button> --}}
                     </div>
                 </div>
             </div>
@@ -100,9 +100,9 @@
         <div class="column">
             <div class="card">
                 <div class="card-content">
-                    <div class="content">
+                    <div id="productDiv" class="content">
                         <label class="label">Product Info</label>
-                        <ul>
+                        <ul id="productList">
                             {{#each products}}
                             <li>
                                 <label class="label">{{name}}</label>
