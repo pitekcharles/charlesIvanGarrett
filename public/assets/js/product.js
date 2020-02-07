@@ -13,7 +13,7 @@ $(document).ready(function() {
   $("#product-form").on("click", handleProductSubmit);
   $("#select").change(getProducts);
   // Getting the initial list
-  
+
   // A function to handle what happens when the form is submitted to create a new Product
   function handleProductSubmit(e) {
     e.preventDefault();
@@ -55,22 +55,38 @@ $(document).ready(function() {
     }
   }
 
+  const inputs = {
+    name: $("#nameInput")
+      .val()
+      .trim(),
+    // quantity: $("#quantityInput")
+    //   .val()
+    //   .trim(),
+  };
+
   const constraints = {
     quantity: {
-      name: "quantity",
-      rules: "numeric",
+      format: {
+        numericality: true,
+      },
+    },
+
+    format: {
+      presence: true,
     },
   };
-  $(document).on("submit", "#orderForm", function(e) {
+  $(document).on("click", "#product-form", function(e) {
     e.preventDefault();
-    handleFormSubmit($(this));
+
+    handleFormSubmit();
   });
 
-  function handleFormSubmit(form) {
-    console.log("wwwof");
+  function handleFormSubmit() {
+    const errors = validate(inputs, constraints);
 
-    const values = validate.collectFormValues(form);
-    const errors = validate(values, constraints);
+    // const form = $("#orderForm");
+    // const values = validate.collectFormValues(form);
+    // const errors = validate(values, constraints);
     // showErrors(form, errors || {});
     if (!errors) {
       console.log("success");
