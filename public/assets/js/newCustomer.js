@@ -8,7 +8,11 @@ $(document).ready(function() {
   const email = $("#email");
   const password = $("#password");
 
-  $(document).on("click", "#addCustomerBtn", () => {
+  $(document).on("click", "#addCustomerBtn", (event) => {
+    event.preventDefault();
+    if (!customerName.val().trim()){
+      return;
+    }
     const newCustomer = {
       name: customerName.val().trim(),
       address: address.val().trim(),
@@ -22,10 +26,7 @@ $(document).ready(function() {
     // clearCustomerField();
   });
 
-  $(document).on('click', '#viewSubmit', () => {
-    console.log('made it into the click event')
-    getServer();
-});
+  $('#customerList').change(GetCustomer)
 
 });
 
@@ -35,6 +36,36 @@ function sendtoServer(data) {
     location.reload();
   });
 }
+
+
+function GetCustomer() {
+  const id = $(this)
+  .children(':selected')
+  .attr('id');
+  if (id){
+    $.get(`/customers/${id}`, function(customer){
+      $('#customerInfo').addClass('is-hidden'); //////////
+      const uList = $('<ul>').appendTo('#productDiv');
+      $('ul li').remove();
+      uList.append(`<div class="tile is-parent">
+      <article class="tile is-child notification is-dark">
+        <p class="title name">name: ${customer.name}</p>
+        <p class="subtitle address">address: ${customer.address}</p>
+        <p class="subtitle payment">payment: ${customer.payment}</p>
+        <p class="subtitle phone">phone: ${customer.phone}</p>
+        <p class="subtitle email">email: ${customer.email}</p>
+        <p class="subtitle password">password: ${customer.password}</p>
+
+      </article>
+    </div>`);
+
+    });
+  } else {
+    location.reload();
+  }
+}
+
+
 
 function getServer(){
   $.get('/api/customers', data => {
