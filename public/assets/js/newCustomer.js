@@ -1,4 +1,6 @@
-$(document).ready(function() {
+
+
+$(document).ready(function () {
   // Getting references to the name input and author container, as well as the table body
   // const formContent = $('#formContent');
   const customerName = $("#customerName");
@@ -7,10 +9,19 @@ $(document).ready(function() {
   const phone = $("#phoneNumber");
   const email = $("#email");
   const password = $("#password");
+  var constraints = {
+    password: {
+      presence: true,
+      length: {
+        minimum: 6,
+        message: "must be at least 6 characters"
+      }
+    }
+  };
 
   $(document).on("click", "#addCustomerBtn", (event) => {
     event.preventDefault();
-    if (!customerName.val().trim()){
+    if (!customerName.val().trim()) {
       return;
     }
     const newCustomer = {
@@ -22,8 +33,12 @@ $(document).ready(function() {
       password: password.val().trim(),
     };
     console.log(newCustomer);
+    // alert(JSON.stringify(validate({password: newCustomer.password}, constraints)));
+    var passTestCheck = validate({password: newCustomer.password}, constraints);
+    alert(passTestCheck.password)
+    // validatePassword(newCustomer);
     sendtoServer(newCustomer);
-    // clearCustomerField();
+
   });
 
   $('#customerList').change(GetCustomer)
@@ -31,7 +46,7 @@ $(document).ready(function() {
 });
 
 function sendtoServer(data) {
-  $.post("/api/customers", data).then( () => {
+  $.post("/api/customers", data).then(() => {
     // console.log(data);
     location.reload();
   });
@@ -40,10 +55,10 @@ function sendtoServer(data) {
 
 function GetCustomer() {
   const id = $(this)
-  .children(':selected')
-  .attr('id');
-  if (id){
-    $.get(`/customers/${id}`, function(customer){
+    .children(':selected')
+    .attr('id');
+  if (id) {
+    $.get(`/customers/${id}`, function (customer) {
       $('#customerInfo').addClass('is-hidden'); //////////
       const uList = $('<ul>').appendTo('#productDiv');
       $('ul li').remove();
@@ -65,31 +80,29 @@ function GetCustomer() {
   }
 }
 
+// function validatePassword() {
+//   $("#formStart").validate({
+//     debug: true,
+//     rules: {
+//       email: {
+//         required: true,
+//         email: true
+//       },
+//       password: {
+//         required: true
+//       }
+//     },
+//     messages: {
+//       email: {
+//         required: "Please enter a email adress",
+//         email: "Please enter a valid email address"
+//       },
+//       password: "Please enter password"
+//     }
+//   });
+// }
 
-
-function getServer(){
-  $.get('/api/customers', data => {
-      console.log('this is the frontend get')
-      // for (const { name, address, payment, phone, email, password } of data) {
-      //   console.log(name,address,payment,phone,email,password)
-    
-
-      //     $('#customerInfoList').append(`<div class="tile is-parent">
-      //     <article class="tile is-child notification is-danger">
-      //       <p class="title">${name}</p>
-      //       <p class="subtitle">${address}</p>
-      //       <p class="subtitle">${payment}</p>
-      //       <p class="subtitle">${phone}</p>
-      //       <p class="subtitle">${email}</p>
-      //       <p class="subtitle">${password}</p>
-
-      //     </article>
-      //   </div>`)
-      // }
-  })
-}
-
-function clearCustomerField(){
+function clearCustomerField() {
   $('#customerName').val('')
   $('#address').val('')
   $('#payment').val('')
@@ -97,3 +110,5 @@ function clearCustomerField(){
   $('#email').val('')
   $('#password').val('')
 }
+
+
