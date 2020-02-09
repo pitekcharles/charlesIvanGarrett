@@ -18,53 +18,60 @@
             <div class="card">
                 <div class="card-content">
                     <div class="content" id="formStart">
-                        <div class="control">
-                            <label class="label">Add Customer</label>
-                        </div>
-                        <div class="field">
-                            <label class="label">Customer Name</label>
+                        <form name="orderForm" id="orderForm">
                             <div class="control">
-                                <input class="input" id="customerName" type="text"
-                                    placeholder="Enter the Customers name.">
+                                <label class="label">Add Customer</label>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Address</label>
-                            <div class="control">
-                                <input class="input" id="address" type="text"
-                                    placeholder="Enter the Customers Address.">
+                            <div class="field">
+                                <label class="label">Customer Name</label>
+                                <div class="control">
+                                    <input class="input" id="nameInput" type="text"
+                                        placeholder="Enter the Customers name.">
+                                    <p id="nameError" class="error" style="color: grey; font-weight: bold"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Payment</label>
-                            <div class="control">
-                                <input class="input" id="payment" type="text"
-                                    placeholder="Enter the Customers prefered payment method">
+                            <div class="field">
+                                <label class="label">Address</label>
+                                <div class="control">
+                                    <input class="input" id="addressInput" type="text"
+                                        placeholder="Enter the Customers Address.">
+                                    <p id="addressError" class="error" style="color: grey; font-weight: bold"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Phone Number</label>
-                            <div class="control">
-                                <input class="input" id="phoneNumber" type="text"
-                                    placeholder="Enter Customers Phone Number">
+                            <div class="field">
+                                <label class="label">Payment</label>
+                                <div class="control">
+                                    <input class="input" id="paymentInput" type="text"
+                                        placeholder="Enter the Customers prefered payment method">
+                                    <p id="paymentError" class="error" style="color: grey; font-weight: bold"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Email</label>
-                            <div class="control">
-                                <input class="input" id="email" type="text" placeholder="Enter Customers email">
+                            <div class="field">
+                                <label class="label">Phone Number</label>
+                                <div class="control">
+                                    <input class="input" id="phoneInput" type="text"
+                                        placeholder="Enter Customers Phone Number">
+                                    <p id="phoneError" class="error" style="color: grey; font-weight: bold"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Password</label>
-                            <div class="control">
-                                <input class="input" id="password" type="text"
-                                    placeholder="Create a Password for the new Customer">
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control">
+                                    <input class="input" id="emailInput" type="text" placeholder="Enter Customers email">
+                                    <p id="emailError" class="error" style="color: grey; font-weight: bold"></p>
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <button class="button is-dark" id="addCustomerBtn">Add Customer</button>
-
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <div class="control">
+                                    <input class="input" id="passwordInput" type="text"
+                                        placeholder="Create a Password for the new Customer">
+                                    <p id="passwordError" class="error" style="color: grey; font-weight: bold"></p>
+                                </div>
+                            </div>
+                            <br>
+                            <button class="button is-dark" id="addCustomerBtn">Add Customer</button>
+                        </form>
                     </div>
                 </div>
             </div>

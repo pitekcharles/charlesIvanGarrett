@@ -25,26 +25,19 @@ module.exports = function (app) {
             res.json(dbCustomer)
         });
     });
-
-
-    app.post('/api/customers', function (req, res) {
-        Customer.create(req.body).then(function (dbCustomer) {
-            console.log(dbCustomer)
-            res.json(dbCustomer)
-        });
+ 
+  app.post("/api/customers", function(req, res) {
+    console.log('supposed to be req.body', req.body)
+    Customer.create(req.body).then(dbCustomer => res.json(dbCustomer));
+  });
+  
+  app.delete("/api/customers/:id", function(req, res) {
+    Customer.destroy({
+      where: {
+        id: req.params.id,
+      },
+    }).then(function(dbCustomer) {
+      res.json(dbCustomer);
     });
-
-
-    app.delete('/api/customers/:id', function ( req, res){
-        Customer.destroy({
-            where: {
-                id: req.params.id
-            }
-        }).then(function (dbCustomer){
-            res.json(dbCustomer)
-        });
-    });
-
-
-}
-
+  });
+ };

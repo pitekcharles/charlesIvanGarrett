@@ -3,54 +3,106 @@
 $(document).ready(function () {
   // Getting references to the name input and author container, as well as the table body
   // const formContent = $('#formContent');
-  const customerName = $("#customerName");
-  const address = $("#address");
-  const payment = $("#payment");
-  const phone = $("#phoneNumber");
-  const email = $("#email");
-  const password = $("#password");
-  var constraints = {
+  const nameInput = $("#nameInput");
+  const addressInput = $("#addressInput");
+  const paymentInput = $("#paymentInput");
+  const phoneInput = $("#phoneInput");
+  const emailInput = $("#emailInput");
+  const passwordInput = $("#passwordInput");
+
+  
+
+  // writing up constraints for validate.js
+  const constraints = {
+    name: {
+      presence: true,
+      length: {
+        minimum: 2,
+        message: "must be at least 2 characters",
+      },
+    },
+    address: {
+      presence: true,
+      length: {
+        minimum: 2,
+        message: 'must be a valid address'
+      },
+    },
+    payment: {
+      presence: true,
+      length: {
+        minimum: 2,
+        message: "must be a valid payment option (i.e. credit, debit, cash)"
+      },
+    },
+    phone: {
+      presence: true,
+      length: {
+        minimum: 10,
+        message: "must be a valid phone number",
+      },
+    },
+    email: {
+      presence: true,
+      length: {
+        minimum: 2,
+        message: "must be a valid email address",
+      }
+    },
     password: {
       presence: true,
       length: {
-        minimum: 6,
-        message: "must be at least 6 characters"
-      }
-    }
+        minimum: 2,
+        message: "must be at least 6 characters",
+      },
+    },
   };
 
-  $(document).on("click", "#addCustomerBtn", (event) => {
+  $("#addCustomerBtn").on("click", (event) => {
     event.preventDefault();
-    if (!customerName.val().trim()) {
-      return;
-    }
+    // if (!customerName.val().trim()) {
+    //   return;
+    // }
+    
     const newCustomer = {
-      name: customerName.val().trim(),
-      address: address.val().trim(),
-      payment: payment.val().trim(),
-      phone: phone.val().trim(),
-      email: email.val().trim(),
-      password: password.val().trim(),
+      name: nameInput.val().trim(),
+      address: addressInput.val().trim(),
+      payment: paymentInput.val().trim(),
+      phone: phoneInput.val().trim(),
+      email: emailInput.val().trim(),
+      password: passwordInput.val().trim(),
     };
-    console.log(newCustomer);
-    // alert(JSON.stringify(validate({password: newCustomer.password}, constraints)));
-    var passTestCheck = validate({password: newCustomer.password}, constraints);
-    alert(passTestCheck.password)
-    // validatePassword(newCustomer);
-    sendtoServer(newCustomer);
+    console.log('new customer: ', newCustomer)
+    console.log('nameInput', nameInput.val())
+    let isValid = true;
+    $('.error').text('');
+    $("#orderForm>div>div>input.is-danger").removeClass("is-danger");
+    const errors = validate(newCustomer, constraints);
+    if (errors) {
 
+      isValid = false;
+    }
+    if (isValid) {
+      clearCustomerField();
+
+      $.ajax({
+        url: '/api/customers',
+        method: 'POST',
+        data: newCustomer,
+      }).then(() => location.reload());
+    } else {
+
+      for (let field in errors) {
+        const fieldName = field;
+        $(`#${fieldName}Error`).text(errors[field].join(", "));
+        $(`#${fieldName}Input`).addClass("is-danger");
+      }
+    }
   });
 
   $('#customerList').change(GetCustomer)
 
 });
-
-function sendtoServer(data) {
-  $.post("/api/customers", data).then(() => {
-    // console.log(data);
-    location.reload();
-  });
-}
 
 
 function GetCustomer() {
@@ -80,28 +132,6 @@ function GetCustomer() {
   }
 }
 
-// function validatePassword() {
-//   $("#formStart").validate({
-//     debug: true,
-//     rules: {
-//       email: {
-//         required: true,
-//         email: true
-//       },
-//       password: {
-//         required: true
-//       }
-//     },
-//     messages: {
-//       email: {
-//         required: "Please enter a email adress",
-//         email: "Please enter a valid email address"
-//       },
-//       password: "Please enter password"
-//     }
-//   });
-// }
-
 function clearCustomerField() {
   $('#customerName').val('')
   $('#address').val('')
@@ -110,5 +140,9 @@ function clearCustomerField() {
   $('#email').val('')
   $('#password').val('')
 }
+
+
+
+
 
 

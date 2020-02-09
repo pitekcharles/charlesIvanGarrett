@@ -9,8 +9,14 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/products", function(req, res) {
+    Product.findAll({}).then(products => {
+      products = products.map(product => product.toJSON());
+      res.json(products);
+    });
+  });
+
   app.get("/product/:id", function(req, res) {
-    // console.log(req.params.product);
     Product.findOne({
       where: {
         id: req.params.id,
@@ -30,5 +36,12 @@ module.exports = function(app) {
         id: req.params.id,
       },
     }).then(product => res.json(product));
+  });
+
+  app.put("/api/products/update/:id?/:quantity?", function(req, res) {
+    Product.update({quantity: req.params.quantity},{where: {id: req.params.id,}})
+      .then(function() {
+        res.json(`Product with ID: ${req.params.id} has had its quantity updated to ${req.params.quantity}`)
+      })
   });
 };

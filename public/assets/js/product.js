@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 /* eslint-disable no-use-before-define */
 /* eslint-disable func-names */
 /* eslint-disable no-undef */
@@ -9,31 +11,8 @@ $(document).ready(function() {
   const costInput = $("#costInput");
   const descriptionInput = $("#descriptionInput");
   const categoryInput = $("#categoryInput");
-  // Adding event listeners to the form to create a new object, and the button to delete
-  $("#product-form").on("click", handleProductSubmit);
   $("#select").change(getProducts);
-  // Getting the initial list
-
-  // A function to handle what happens when the form is submitted to create a new Product
-  function handleProductSubmit(e) {
-    e.preventDefault();
-    if (!nameInput.val().trim()) {
-      return;
-    }
-    createProduct({
-      name: nameInput.val().trim(),
-      quantity: quantityInput.val().trim(),
-      cost: costInput.val().trim(),
-      description: descriptionInput.val().trim(),
-      category: categoryInput.val().trim(),
-    });
-  }
-  // Function for creating a new list row for Products
-  function createProduct(productData) {
-    // console.log(nameInput.val().trim());
-    $.post("/api/products", productData).then(() => location.reload());
-  }
-
+  // route to show single product
   function getProducts() {
     const id = $(this)
       .children(":selected")
@@ -47,11 +26,82 @@ $(document).ready(function() {
         uList.append(
           `<li><b>${product.name}</b></li><li>Quantity: ${product.quantity}</li><li>Cost ${product.cost}</li><li>Description ${product.description}</li><li>Category ${product.category}</li>`
         );
-        // console.log(err);
-        // res.render("product", req); //!
       });
     } else {
       location.reload();
     }
   }
+  // wiring up constraints for validate.js
+  const constraints = {
+    name: {
+      presence: true,
+      length: {
+        minimum: 2,
+        message: "must be at least 2 characters",
+      },
+    },
+    quantity: {
+      presence: true,
+      numericality: {
+        onlyInteger: true,
+      },
+    },
+    cost: {
+      presence: true,
+      numericality: {
+        onlyInteger: true,
+      },
+    },
+    description: {
+      presence: true,
+      length: {
+        minimum: 3,
+        message: "must be at least 3 characters",
+      },
+    },
+    category: {
+      presence: true,
+      length: {
+        minimum: 2,
+        message: "must be at least 2 characters",
+      },
+    },
+  };
+  // our on click event - note I deleted my post route as it will be taken cared of later in this function
+  $("#productSubmit").on("click", function(event) {
+    event.preventDefault();
+    const data = {
+      name: nameInput.val().trim(),
+      quantity: quantityInput.val().trim(),
+      cost: costInput.val().trim(),
+      description: descriptionInput.val().trim(),
+      category: categoryInput.val().trim(),
+    };
+    // as you land on the page no errors need to be showed up so let's create a let and give it value true
+    let isValid = true;
+    // next two lines are clearing our errors and angry css from fields that were not properly completed
+    $(".error").text("");
+    $("#orderForm>div>div>input.is-danger").removeClass("is-danger");
+    // this is the validate.js magic in one line
+    const errors = validate(data, constraints);
+    // if we get errors re-assign isValid to be false
+    if (errors) isValid = false;
+    // if no errors sending post with the object we created earlier
+    if (isValid) {
+      $.ajax({
+        url: "/api/products",
+        method: "POST",
+        // eslint-disable-next-line object-shorthand
+        data: data,
+      }).then(() => location.reload());
+    } else {
+      // if there are errors we are setting .text of error message in <p> and some css on fileds
+      // eslint-disable-next-line prefer-const
+      for (let field in errors) {
+        const fieldName = field;
+        $(`#${fieldName}Error`).text(errors[field].join(", "));
+        $(`#${fieldName}Input`).addClass("is-danger");
+      }
+    }
+  });
 });
