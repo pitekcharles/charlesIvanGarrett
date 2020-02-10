@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 require("dotenv").config();
 
 module.exports = {
@@ -20,6 +19,6 @@ module.exports = {
   },
   production: {
     use_env_variable: "JAWSDB_URL",
-    dialect: "mysql"
-  }
+    dialect: "mysql",
+  },
 };
