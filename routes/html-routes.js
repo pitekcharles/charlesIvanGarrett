@@ -9,10 +9,6 @@ router.get("/customer", function(req, res) {
   res.render("customer");
 });
 
-// router.get("/product", function(req, res) {
-//   res.render("product");
-// });
-
 router.get("/order", function(req, res) {
   res.render("order");
 });
