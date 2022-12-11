@@ -20,7 +20,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "eslint-plugin-disable": "^1.0.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-handlebars": "^3.0.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
